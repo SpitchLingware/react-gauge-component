@@ -136,7 +136,7 @@ const getGrafanaMainArcData = (gauge: Gauge, percent: number | undefined = undef
   //This is the grey arc that will be displayed when the gauge is not full
   let secondSubArc = {
     value: 1 - currentPercentage,
-    color: "#5C5C5C"
+    color: "#EDEDED"
   }
   return [firstSubArc, secondSubArc];
 }
@@ -146,8 +146,8 @@ const drawGrafanaOuterArc = (gauge: Gauge, resize: boolean = false) => {
   if (gauge.props.type == GaugeType.Grafana && resize) {
     gauge.doughnut.current.selectAll(".outerSubArc").remove();
     let outerArc = arc()
-      .outerRadius(outerRadius + 7)
-      .innerRadius(outerRadius + 2)
+      .outerRadius(outerRadius + 12)
+      .innerRadius(outerRadius + 3)
       .cornerRadius(0)
       .padAngle(0);
     var arcPaths = gauge.doughnut.current

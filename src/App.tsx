@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './App.css';
 import GaugeComponent from './lib';
 import CONSTANTS from './lib/GaugeComponent/constants';
+import {GuageChart} from './lib/GaugeComponent/GuageChart';
 
 const App = () => {
   const [currentValue, setCurrentValue] = useState(50);
@@ -30,46 +31,18 @@ const App = () => {
       return value.toFixed(0) + ' kbit/s';
     }
   }
-  const debugGauge = () => <GaugeComponent
-    arc={{
-      padding: 0.01,
-      // nbSubArcs: 100,
-      // colorArray: ['#EA4228', '#EFFF']
-      subArcs: [
-        { limit: 15, color: '#EA4228', showTick: true },
-        { limit: 17, color: '#F5CD19', showTick: true },
-        { limit: 28, color: '#5BE12C', showTick: true },
-        { limit: 30, color: '#F5CD19', showTick: true },
-        { color: '#EA4228' }
-      ]
-    }}
-    labels={{
-      valueLabel: { formatTextValue: value => value + 'ºC' },
-      tickLabels: {
-        defaultTickValueConfig: { formatTextValue: value => value + 'ºC'},
-        ticks: [
-          { value: 22.5 }
-        ]
-      }
-    }}
-    value={100}
-    minValue={10}
-    maxValue={100}
-  />
+  const debugGauge = () => <GuageChart/>;
   return (
-    CONSTANTS.debugSingleGauge ?
+    true ?
       <Container>
         <Row>
           <Col lg={{ offset: 2, span: 8 }}>
-            <h6 className="mb-1">Single GaugeComponent for debugging</h6>
             {debugGauge()}
           </Col>
           <Col md={4}>
-            <h6 className="mb-1">Single GaugeComponent for debugging</h6>
             {debugGauge()}
           </Col>
           <Col md={6}>
-            <h6 className="mb-1">Single GaugeComponent for debugging</h6>
             {debugGauge()}
           </Col>
         </Row>
@@ -103,7 +76,12 @@ const App = () => {
             <Col xs={12} lg={3}>
               <h6 className="mb-1">Simple Gauge (w/ tooltips)</h6>
               <GaugeComponent
-                arc={{
+                pointer={{ type: "arrow", color: '#dfa810'}}
+                type="grafana"
+                arc={{       
+                  width: 0.20,
+                  padding: 2, 
+                  cornerRadius: 7,                                 
                   subArcs: [
                     {
                       limit: 20,
@@ -271,8 +249,8 @@ const App = () => {
               type="semicircle"
                 arc={{
                   width: 0.2,
-                  padding: 0.005,
-                  cornerRadius: 1,
+                  padding: 0.01,
+                  cornerRadius: 5,
                   // gradient: true,
                   subArcs: [
                     {

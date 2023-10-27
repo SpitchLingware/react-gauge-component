@@ -84,6 +84,8 @@ export const renderChart = (gauge: Gauge, resize: boolean = false) => {
         let boundHeight = gauge.doughnut.current.node().getBoundingClientRect().height; 
         let boundWidth = gauge.container.current.node().getBoundingClientRect().width;
         let gaugeType = gauge.props.type as string;
+        
+
         gauge.svg.current
             .attr("width", boundWidth)
             .attr("height", boundHeight + gaugeTypeHeightCorrection[gaugeType]);
